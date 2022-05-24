@@ -1,0 +1,82 @@
+////////////////Сортировка методом выбора///////////////////
+#include <iostream> 
+#include <algorithm> 
+#include <ctime>//Библиотека времени.
+
+using namespace std;
+
+int main()
+{
+	srand(time(NULL));
+	setlocale(0, "RUS");
+	const int IRR = 10;
+	int arr[IRR]{};
+	
+	for (int i = 0; i < IRR; i++)
+		arr[i] = rand();//рандом числа.
+	
+	for (int sI = 0; sI < IRR - 1; ++sI)
+	{
+		int srr = sI;
+
+		for (int curINDEX = sI + 1; curINDEX < IRR; ++curINDEX)
+		{
+			if (arr[curINDEX] < arr[srr])
+				srr = curINDEX;
+		}
+		swap(arr[sI], arr[srr]);
+	}
+	for (int index = 0; index < IRR; ++index)
+		cout << arr[index] << ' ';
+}
+//////////////Сортировка пузырьком/////////////////
+#include <iostream>
+#include <algorithm>
+#include <ctime>
+
+using namespace std;
+
+int main()
+{
+	srand(time(NULL));
+	setlocale(0, "RUS");
+	const int a = 10;
+	int arr[a]{};
+
+	for (int i = 0; i < a; i++)
+		arr[i] = rand();
+	
+	const int num = sizeof(arr) / sizeof(arr[0]);
+
+	for (int i = 0; i < num; ++i)
+		cout << arr[i] << " ";
+
+	cout << endl;
+
+	int tm;
+	for (int x = 0; x < num - 1; ++x)
+	{
+		bool b = 0;
+		for (int j = 0; j < num - 1 - x; ++j)
+		{
+			if (arr[j] > arr[j + 1])
+			{
+				tm = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = tm;
+				b = 1;
+			}
+		}
+		cout << endl;
+
+		for (int z = 0; z < num; ++z)
+			cout << arr[z] << " ";
+
+		if (!b)
+		{
+			cout << endl;
+			cout << "цикл: " << x + 1;
+			break;
+		}
+	}
+}
